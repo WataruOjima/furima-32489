@@ -1,37 +1,32 @@
 # README
 ## Users
 
-| Column       | Type           | Options                       |
-| ------------ | -------------- | ----------------------------- |
-| nickname     | string         | null: false                   |
-| email        | string         | null: false                   |
-| password     | string         | null: false                   |
-| last_name    | string         | null: false                   |
-| first_name   | string         | null: false                   |
-| birth_date   |  date          | null: false                   |
-| bought_item  | string         | null: false foreign_key: true |
-| selling_item | string         | null: false foreign_key: true |
-| sold_item    | string         | null: false foreign_key: true |
+| Column              | Type           | Options                       |
+| ------------------- | -------------- | ----------------------------- |
+| nickname            | string         | null: false                   |
+| email               | string         | null: false                   |
+| password            | string         | null: false                   |
+| last_name           | string         | null: false                   |
+| furigana_last_name  | string         | null: false                   |
+| first_name          | string         | null: false                   |
+| furigana_first_name | string         | null: false                   |
+| birth_date          | date           | null: false                   |
+
 
 ### Association
-has many :items
+has_many :items
 has one :Shipping address
 has one :Purchase records
 
 
 ## Items
-| Column          | Type          | Options                 |
-| --------------- | ------------- | ----------------------- |
-| Item            | string        | null: false             |
-| seller._id      | integer       | null: false,foreign key |
-| description     | text          | null: false             |
-| category        | string        | null: false             |
-| condition       | string        | null: false             |
-| shipping_charge | string        | null: false             |
-| ship_from       | string        | null: false             |
-| shipping_date   | string        | null: false             |
-| price           | string        | null: false             |
-| image           | ActiveStorage | null: false             |
+| Column          | Type           | Options                 |
+| --------------- | -------------- | ----------------------- |
+| item            | string         | null: false             |
+| user._id        | integer        | null: false,foreign key |
+| description     | text           | null: false             |
+| category        | integer        | null: false             |
+| condition       | integer        | null: false             |
 
 ### Association
 has one :Shipping address
@@ -40,10 +35,10 @@ belongs_to :user
 
 
 ## Purchase records
-| Column     | Type    | Options                 |
-| ---------- | ------- | ----------------------- |
-| buyer_id   | integer | null: false,foreign key |
-| item       | string  | null: false,foreign key |
+| Column     | Type     | Options                 |
+| ---------- | -------- | ----------------------- |
+| user_id    | integer  | null: false,foreign key |
+| item_id      | integer  | null: false,foreign key |
 
 ### Association
 has one Shipping address
