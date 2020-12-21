@@ -1,24 +1,66 @@
 # README
+## Users
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column       | Type           | Options                       |
+| ------------ | -------------- | ----------------------------- |
+| nickname     | string         | null: false                   |
+| email        | string         | null: false                   |
+| password     | string         | null: false                   |
+| last_name    | string         | null: false                   |
+| first_name   | string         | null: false                   |
+| birth_date   |  date          | null: false                   |
+| bought_item  | string         | null: false foreign_key: true |
+| selling_item | string         | null: false foreign_key: true |
+| sold_item    | string         | null: false foreign_key: true |
 
-Things you may want to cover:
+### Association
+has many :items
+has one :Shipping address
+has one :Purchase records
 
-* Ruby version
 
-* System dependencies
+## Items
+| Column          | Type          | Options                 |
+| --------------- | ------------- | ----------------------- |
+| Item            | string        | null: false             |
+| seller._id      | integer       | null: false,foreign key |
+| description     | text          | null: false             |
+| category        | string        | null: false             |
+| condition       | string        | null: false             |
+| shipping_charge | string        | null: false             |
+| ship_from       | string        | null: false             |
+| shipping_date   | string        | null: false             |
+| price           | string        | null: false             |
+| image           | ActiveStorage | null: false             |
 
-* Configuration
+### Association
+has one :Shipping address
+has one :Purchase records
+belongs_to :user 
 
-* Database creation
 
-* Database initialization
+## Purchase records
+| Column     | Type    | Options                 |
+| ---------- | ------- | ----------------------- |
+| buyer_id   | integer | null: false,foreign key |
+| item       | string  | null: false,foreign key |
 
-* How to run the test suite
+### Association
+has one Shipping address
+belongs_to user
+belongs_to item
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Shipping address
+| Column          | Type    | Options     |
+| --------------- | ------- | ----------- |
+| zip_code        | string  | null: false |    
+| prefecture_code | string  | null: false |
+| city            | string  | null: false |
+| building        | string  | null: false |
+| tel_number      | string  | null: false |
 
-* ...
+### Association
+belongs_to :Purchase records
+belongs_to :user
+belongs_to :item
