@@ -19,16 +19,17 @@ has_many :Purchase records
 
 
 ## Items
-| Column          | Type           | Options                 |
-| --------------- | -------------- | ----------------------- |
-| item            | string         | null: false             |
-| user_id         | integer        | null: false,foreign_key |
-| description     | text           | null: false             |
-| category        | integer        | null: false             |
-| condition       | integer        | null: false             |
-| price           | string         | null: false             |
-| ship_from_id    | integer        | null: false             |
-| shipping_date_id| integer        | null: false             |
+| Column             | Type           | Options                       |
+| ------------------ | -------------- | ----------------------------- |
+| item_name          | string         | null: false                   |
+| user_id            | integer        | null: false,foreign_key: true |
+| description        | text           | null: false                   |
+| category_id        | integer        | null: false                   |
+| condition_id       | integer        | null: false                   |
+| price              | string         | null: false                   |
+| ship_from_id       | integer        | null: false                   |
+| shipping_date_id   | integer        | null: false                   |
+| shipping_charge_id | string         | null: false                   |
 
 ### Association
 has one :Purchase record
@@ -36,10 +37,11 @@ belongs_to :user
 
 
 ## Purchase records
-| Column     | Type     | Options                 |
-| ---------- | -------- | ----------------------- |
-| user_id    | integer  | null: false,foreign_key |
-| item_id    | integer  | null: false,foreign_key |
+| Column              | Type     | Options                       |
+| ------------------- | -------- | ----------------------------- |
+| user_id             | integer  | null: false,foreign_key: true |
+| item_id             | integer  | null: false,foreign_key: true |
+
 
 ### Association
 has one Shipping address
@@ -48,15 +50,16 @@ belongs_to item
 
 
 ## Shipping address
-| Column          | Type      | Options                 |
-| --------------- | --------- | ----------------------- |
-| zip_code        | string    | null: false             |    
-| prefecture_id   | integer   | null: false             |
-| city            | string    | null: false             |
-| address         | string    | null: false             |
-| building        | string    |                         |
-| tel_number      | string    | null: false             |
-| user_id         | integer   | null: false,foreign_key |
+| Column             | Type      | Options                       |
+| ------------------ | --------- | ----------------------------- |
+| zip_code           | string    | null: false                   |    
+| prefecture_id      | integer   | null: false                   |
+| city               | string    | null: false                   |
+| address            | string    | null: false                   |
+| building           | string    |                               |
+| tel_number         | string    | null: false                   |
+| user_id            | integer   | null: false,foreign_key: true |
+| purchase_record_id | integer   | null: false,foreign_key: true |
 
 ### Association
 belongs_to :Purchase record
