@@ -26,7 +26,7 @@ has_many :Purchase records
 | description        | text           | null: false                   |
 | category_id        | integer        | null: false                   |
 | condition_id       | integer        | null: false                   |
-| price              | string         | null: false                   |
+| price              | integer        | null: false                   |
 | prefecture_id      | integer        | null: false                   |
 | shipping_date_id   | integer        | null: false                   |
 | shipping_charge_id | integer        | null: false                   |
