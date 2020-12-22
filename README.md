@@ -27,9 +27,9 @@ has_many :Purchase records
 | category_id        | integer        | null: false                   |
 | condition_id       | integer        | null: false                   |
 | price              | string         | null: false                   |
-| ship_from_id       | integer        | null: false                   |
+| prefecture_id      | integer        | null: false                   |
 | shipping_date_id   | integer        | null: false                   |
-| shipping_charge_id | string         | null: false                   |
+| shipping_charge_id | integer        | null: false                   |
 
 ### Association
 has one :Purchase record
@@ -44,9 +44,9 @@ belongs_to :user
 
 
 ### Association
-has one Shipping address
-belongs_to user
-belongs_to item
+has one :Shipping address
+belongs_to :user
+belongs_to :item
 
 
 ## Shipping address
@@ -58,7 +58,6 @@ belongs_to item
 | address            | string    | null: false                   |
 | building           | string    |                               |
 | tel_number         | string    | null: false                   |
-| user_id            | integer   | null: false,foreign_key: true |
 | purchase_record_id | integer   | null: false,foreign_key: true |
 
 ### Association
