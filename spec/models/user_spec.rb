@@ -64,7 +64,7 @@ describe User do
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
       it "passwordが5文字以内だと登録できない" do 
-        @user.password = ”00000"
+        @user.password = "00000"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end 
