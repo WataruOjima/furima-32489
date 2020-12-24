@@ -4,38 +4,6 @@ describe User do
     @user = FactoryBot.build(:user)
   end
   describe 'ユーザー新規登録' do
-    # コメントアウト中1224確認中　
-    # context '新規登録がうまくいくとき' do
-    #   it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
-    #     expect(@user).to be_valid
-    #   end
-      # it "passwordが6文字以上であれば登録できる" do
-      #   @user.password = "abcd123"
-      #   @user.password_confirmation = "abcd123"
-      #   expect(@user).to be_valid
-      # end
-      # it "パスワードに半角英数字混合での入力してあれば登録できる" do
-      #   @user.password = "/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i"
-      #   @user.password_confirmation =  "/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i"
-      #   expect(@user).to be_valid
-      # end
-      # it "名字が全角文字で入力してあれば登録できる" do
-      #   @user.last_name　= "/\A[ぁ-んァ-ヶ一-龥々]+\z/"
-      #   expect(@user).to be_valid
-      # end
-      # it "名前が全角文字で入力してあれば登録できる" do
-      #   @user.first_name　= "/\A[ぁ-んァ-ヶ一-龥々]+\z/"
-      #   expect(@user).to be_valid
-      # end
-      # it "名字のふりがなが全角カナで入力してあれば登録できる" do 
-      #   @user.furigana_last_name　= "/\A[ァ-ヶー－]+\z/"
-      #   expect(@user).to be_valid
-      # end
-      # it "名前のふりがなが全角カナで入力してあれば登録できる" do
-      #   @user.furigana_first_name = "/\A[ァ-ヶー－]+\z/"
-      #   expect(@user).to be_valid
-      # end
-    # end
     context '新規登録がうまくいかないとき' do
       it "nicknameが空だと登録できない" do
         @user.nickname = ""
@@ -118,19 +86,3 @@ describe User do
     end
   end
 end
-
-# 必須のチェック項目　1224確認中。
-# 1 ニックネームが必須であること
-# 1 メールアドレスが必須であること
-# 1 メールアドレスが一意性であること
-# 1 メールアドレスは、@を含む必要があること
-# 1 パスワードが必須であること
-# 1 パスワードは、6文字以上での入力が必須であること
-# 1 パスワードは、半角英数字混合での入力が必須であること
-# 1 パスワードは、確認用を含めて2回入力すること
-# 1 パスワードとパスワード（確認用）、値の一致が必須であること
-# 1 ユーザー本名は、名字と名前がそれぞれ必須であること
-# 1 ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること
-# 1 ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること
-# 1 ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること
-# 1 生年月日が必須であること
