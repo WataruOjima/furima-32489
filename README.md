@@ -15,7 +15,7 @@
 
 ### Association
 has_many :items
-has_many :Purchase records
+has_many :Purchase_records
 
 
 ## Items
@@ -32,11 +32,11 @@ has_many :Purchase records
 | shipping_charge_id | integer        | null: false                   |
 
 ### Association
-has one :Purchase record
+has one :Purchase_record
 belongs_to :user 
 
 
-## Purchase records
+## Purchase_records
 | Column              | Type     | Options                       |
 | ------------------- | -------- | ----------------------------- |
 | user_id             | integer  | null: false,foreign_key: true |
@@ -44,12 +44,12 @@ belongs_to :user
 
 
 ### Association
-has one :Shipping address
+has one :Shipping_address
 belongs_to :user
 belongs_to :item
 
 
-## Shipping address
+## Shipping_address
 | Column             | Type      | Options                       |
 | ------------------ | --------- | ----------------------------- |
 | zip_code           | string    | null: false                   |    
@@ -61,4 +61,4 @@ belongs_to :item
 | purchase_record_id | integer   | null: false,foreign_key: true |
 
 ### Association
-belongs_to :Purchase record
+belongs_to :Purchase_record
