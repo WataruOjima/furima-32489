@@ -66,12 +66,12 @@ describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
       it "priceが299以下の場合は保存できない" do
-        @item.price = "299"
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
         it "priceが10,000,000以上の場合は保存できない" do
-          @item.price = "10000000"
+          @item.price = 10000000
           @item.valid?
           expect(@item.errors.full_messages).to include()
       end
