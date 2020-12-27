@@ -15,11 +15,6 @@ describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
-      it "user_idが空だと出品できない" do
-         @item.user = nil
-         @item.valid?
-         expect(@item.errors.full_messages).to include()
-      end
       it "item_nameが空だと出品できない" do
         @item.item_name = nil
         @item.valid?
@@ -70,10 +65,10 @@ describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
-        it "priceが10,000,000以上の場合は保存できない" do
+        it "値段が9999999より大きかった時に出品できないこと" do
           @item.price = 10000000
           @item.valid?
-          expect(@item.errors.full_messages).to include()
+          expect(@item.errors.full_messages).to include("Price is invalid")
       end
     end
   end

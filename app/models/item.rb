@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   end
   
   validates :price,              presence: true, 
-  numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 10000000, message: "is invalid"}
+  numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
 
 
 has_one :purchase_record
