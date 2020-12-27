@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :new, :update, :destroy]
   def index
-    @items = Item.all
+    # 商品出品機能の実装のためコメントアウト1226 @items = Item.all
   end
 
   def new

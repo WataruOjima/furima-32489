@@ -16,7 +16,7 @@ describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it "user_idが空だと出品できない" do
-         @item.user_id = nil
+         @item.user = nil
          @item.valid?
          expect(@item.errors.full_messages).to include()
       end
