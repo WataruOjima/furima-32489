@@ -1,7 +1,6 @@
 require 'rails_helper'
 describe Item, type: :model do
   before do
-    # binding.pry
     @item = FactoryBot.build(:item)
   end
   describe '商品情報入力' do
@@ -66,10 +65,15 @@ describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
-      it "priceが設定範囲以外だと出品できない" do
-        @item.price = "100000000"
+      it "priceが299以下の場合は保存できない" do
+        @item.price = "299"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+        it "priceが10,000,000以上の場合は保存できない" do
+          @item.price = "10000000"
+          @item.valid?
+          expect(@item.errors.full_messages).to include()
       end
     end
   end

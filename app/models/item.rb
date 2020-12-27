@@ -1,9 +1,12 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   # validates :name, :description, :price, :image, presence: true
-  validates :item_name,          presence: true
-  validates :description,        presence: true
-  validates :image,              presence: true
+
+  with_options presence: true do
+    validates :item_name,          presence: true
+    validates :description,        presence: true
+    validates :image,              presence: true
+  end
 
   with_options presence: true, numericality: { other_than: 0, message: "is invalid"} do
     validates :category_id
