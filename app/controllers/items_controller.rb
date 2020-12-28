@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :new, :update, :destroy]
   def index
-    # 商品出品機能の実装のためコメントアウト1226 @items = Item.all
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
