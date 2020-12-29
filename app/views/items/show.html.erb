@@ -50,7 +50,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @items.nickname %></>
+          <td class="detail-value"><%= @item.user.nickname %></>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
@@ -110,7 +110,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href=“#” class=‘another-item’><%= "商品のカテゴリー名" %>をもっと見る</a>
+  <a href=“#” class=‘another-item’><%= @item.category.name %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
