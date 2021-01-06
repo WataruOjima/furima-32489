@@ -9,6 +9,12 @@ RSpec.describe Order, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order).to be_valid
       end
+      it 'buildingは空でも保存できること' do
+        @order.building = nil
+        expect(@order).to be_valid
+      end
+    end 
+    context '購入ができない場合' do
       it 'zip_codeが空だと保存できないこと' do
         @order.zip_code = nil
         @order.valid?
@@ -34,10 +40,7 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Address can't be blank")
       end
-      it 'building_nameは空でも保存できること' do
-        @order.building = nil
-        expect(@order).to be_valid
-      end
+      
       it 'tel_numberが全角数字だと保存できないこと' do
         @order.tel_number = '１１１１１１１１１１１'
         @order.valid?
