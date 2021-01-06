@@ -3,47 +3,47 @@ class OrdersController < ApplicationController
   before_action :sold_out_item, :index
   before_action :authenticate_user!, :index
   before_action :move_to_index, :index
-  def index 
+  def index
     @order = Order.new
   end
 
   def create
     @order = Order.new(address_params)
     if @order.valid?
-       @order.save
-       pay_item
-       redirect_to root_path
+      @order.save
+      pay_item
+      redirect_to root_path
     else
       render action: :index
     end
   end
 
-  private 
+  private
 
   def set_order
     @item = Item.find(params[:item_id])
-  end 
-  
-  def address_params
-    params.require(:order).permit(:zip_code, :prefecture_id, :city, :address, :building, :tel_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
-  
+
+  def address_params
+    params.require(:order).permit(:zip_code, :prefecture_id, :city, :address, :building, :tel_number).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
+  end
+
   def move_to_index
     redirect_to root_path unless current_user.id != @item.user_id
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: address_params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
 
-  private
-   def sold_out_item
+  def sold_out_item
     redirect_to root_path if @item.purchase_record.present?
-   end
-
+  end
 end
