@@ -8,6 +8,7 @@ class Order
     validates :city
     validates :address
     validates :tel_number, format: { with: /\A\d{11}\z/, message: 'Input only number' }
+    validates :token
   end
   
   def save
