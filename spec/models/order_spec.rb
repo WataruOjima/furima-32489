@@ -5,8 +5,8 @@ RSpec.describe Order, type: :model do
     before do
       user =  FactoryBot.create(:user)
       item =  FactoryBot.create(:item)
-      @order = FactoryBot.build(:order,item_id: item.id, user_id: user.id)
-      sleep (0.1)
+      @order = FactoryBot.build(:order, item_id: item.id, user_id: user.id)
+      sleep(0.1)
     end
     context '購入ができる場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
@@ -16,7 +16,7 @@ RSpec.describe Order, type: :model do
         @order.building = nil
         expect(@order).to be_valid
       end
-    end 
+    end
     context '購入ができない場合' do
       it 'zip_codeが空だと保存できないこと' do
         @order.zip_code = nil
@@ -43,7 +43,7 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Address can't be blank")
       end
-      
+
       it 'tel_numberが全角数字だと保存できないこと' do
         @order.tel_number = '１１１１１１１１１１１'
         @order.valid?
