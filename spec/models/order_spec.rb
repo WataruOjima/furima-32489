@@ -55,7 +55,7 @@ RSpec.describe Order, type: :model do
         expect(@order.errors.full_messages).to include('Tel number Input only number')
       end
       it 'tel_numberが英数混合では登録できないこと' do
-        @order.tel_number = 'aaaaaaaaaaaa'
+        @order.tel_number = 'aaaaaa111111'
         @order.valid?
         expect(@order.errors.full_messages).to include('Tel number Input only number')
       end
