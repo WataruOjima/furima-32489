@@ -33,6 +33,11 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it 'prefectureを選択していないと保存できないこと' do
+        @order.prefecture_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it 'cityが空だと保存できないこと' do
         @order.city = nil
         @order.valid?
@@ -46,6 +51,11 @@ RSpec.describe Order, type: :model do
 
       it 'tel_numberが全角数字だと保存できないこと' do
         @order.tel_number = '１１１１１１１１１１１'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Tel number Input only number')
+      end
+      it 'tel_numberが英数混合では登録できないこと' do
+        @order.tel_number = 'aaaaaaaaaaaa'
         @order.valid?
         expect(@order.errors.full_messages).to include('Tel number Input only number')
       end
