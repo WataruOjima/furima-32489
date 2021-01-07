@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_order
-  before_action :sold_out_item
   before_action :authenticate_user!
+  before_action :sold_out_item
   before_action :move_to_index
+  
+
   def index
     @order = Order.new
   end

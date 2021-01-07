@@ -19,7 +19,7 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-       <%=  number_to_currency(@item.price, :unit => "￥", :precision => 0)%> 
+       <%=  number_to_currency(@item.price, unit: "￥", precision: 0)%> 
       </span>
       <span class="item-postage">
         <%= @item.shipping_charge.name %>
@@ -28,15 +28,19 @@
 
     <%#  1229確認中ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
      
-    <% if user_signed_in? %>
-      <% if current_user.id && @item.user_id == PurchaseRecord.where(item_id: @item.id).empty?%>
-      <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
-      <p class='or-text'>or</p>
-      <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
-      <% elsif @item.present? != PurchaseRecord.where(item_id: @item.id).exists?%>
-      <%= link_to '購入画面に進む', item_orders_path(@item.id), class:"item-red-btn"%>
+     <% unless @item.present? == PurchaseRecord.where(item_id: @item.id).exists? %>
+      <% if user_signed_in? && current_user.id == @item.user_id%>
+        <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
+        <p class='or-text'>or</p>
+        <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
+        <% elsif user_signed_in? %>
+        <%= link_to '購入画面に進む', item_orders_path(@item.id), class:"item-red-btn"%>
       <% end %>
-    <% end %>
+     <% end %>
+    
+    
+
+
     <%# 1229確認中商品が売れていない場合はこちらを表示しましょう %>
     
     <%# //確認中商品が売れていない場合はこちらを表示しましょう %>
