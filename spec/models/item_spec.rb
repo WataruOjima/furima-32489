@@ -1,9 +1,10 @@
 require 'rails_helper'
+
 describe Item, type: :model do
-  before do
-    @item = FactoryBot.build(:item)
-  end
   describe '商品情報入力' do
+    before do
+      @item = FactoryBot.build(:item)
+    end
     context '商品登録できる場合' do
       it 'item_nameとuser_idとitem_nameとdescriptionとcategory_idとcondition_idとprefecture_idとshipping_date_idとshipping_charge_idとpriceがあれば登録できる' do
         expect(@item).to be_valid
