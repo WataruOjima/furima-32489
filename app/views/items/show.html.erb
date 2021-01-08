@@ -37,15 +37,10 @@
         <%= link_to '購入画面に進む', item_orders_path(@item.id), class:"item-red-btn"%>
       <% end %>
      <% end %>
-    
-    
-
-
+  
     <%# 1229確認中商品が売れていない場合はこちらを表示しましょう %>
     
     <%# //確認中商品が売れていない場合はこちらを表示しましょう %>
-    
-    <%# //確認中ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
       <span><%= @item.description %></span>
