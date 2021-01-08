@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :basic_auth
   before_action :set_order
   before_action :authenticate_user!
   before_action :sold_out_item
@@ -46,5 +47,11 @@ class OrdersController < ApplicationController
 
   def sold_out_item
     redirect_to root_path if @item.purchase_record.present?
+  end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
+    end
   end
 end
